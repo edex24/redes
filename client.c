@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -11,6 +12,7 @@ int main(){
   int network_socket;
   network_socket = socket (AF_INET, SOCK_STREAM, 0);
   char client_message[2000];
+  char server_response[2000];
 
   //specify an address for the Socket
   struct sockaddr_in server_address;
@@ -26,8 +28,8 @@ int main(){
   }
 
   //recibir data del server+
-  char server_response[256];
-  recv(network_socket,server_response, sizeof(server_response),0);
+
+  recv(network_socket,server_response, strlen(server_response),0);
 
   //print our servers response
   printf("The server sent: %s\n",server_response );
